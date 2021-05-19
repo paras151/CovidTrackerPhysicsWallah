@@ -32,6 +32,7 @@ const Chart: React.FC<IProps> = ({confirmed, active, recovered }: IProps) => {
                   data: [confirmed, active, recovered],
                 },
               ],
+              
             }}
             options={{
               legend: { display: false },
