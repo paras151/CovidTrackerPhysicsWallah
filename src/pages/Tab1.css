@@ -1,0 +1,24 @@
+.item{
+  text-align: center;
+}
+ion-content{
+  --offset-bottom: auto!important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+h1{
+  font-size:100px;
+}
+.list-container{
+  left:25%;
+ width:50%; 
+}
+
+.list-container::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+  width: 0;
+    height: 0;
+}

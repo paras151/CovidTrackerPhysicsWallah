@@ -1,6 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
+  IonHeader,
   IonIcon,
   IonLabel,
   IonRouterOutlet,
@@ -14,6 +15,9 @@ import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 
+import React, { useState, useEffect } from 'react';
+import {Component, useCallback, useContext} from 'react';
+import {NavContext} from '@ionic/react';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -32,20 +36,46 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { fetchStates, fetchStateDetails} from './api/index';
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+  const [data, setData] = useState<[]>([]);
+  const [state, setState] = useState<string>('');
+  const [district, setDistrict] = useState<string>('');
+
+  useEffect(() => {
+    const fetchAPI = async () => {
+      setData(await fetchStates());
+    };
+  
+    fetchAPI();
+  }, []);
+
+  const handleStateChange = async (state:string)=>{
+    console.log(state)
+    setState(state);
+  }
+
+  const handleDistrictChange = async (district:string)=>{
+    console.log(district)
+    setDistrict(district);
+  }
+
+
+  return (
+
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/tab1">
-            <Tab1 />
+            <Tab1 handleStateChange={handleStateChange} data={data}  />
           </Route>
           <Route exact path="/tab2">
-            <Tab2 />
+            <Tab2 handleDistrictChange={handleDistrictChange} state = {state} data={data} />
           </Route>
           <Route path="/tab3">
-            <Tab3 />
+            <Tab3 state = {state} district = {district} data={data}/>
           </Route>
           <Route exact path="/">
             <Redirect to="/tab1" />
@@ -69,5 +99,6 @@ const App: React.FC = () => (
     </IonReactRouter>
   </IonApp>
 );
+}
 
 export default App;

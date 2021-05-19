@@ -1,24 +1,67 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent,IonCard,IonCardContent,IonCardSubtitle,IonCardHeader,IonCardTitle,IonItemOptions,IonItemSliding,IonItemOption,IonItem,IonList,IonLabel,IonItemDivider,IonListHeader, IonSelectOption, IonSelect , IonHeader, IonPage, IonToolbar } from '@ionic/react';
+
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 
-const Tab3: React.FC = () => {
+import React, { useState, useEffect } from 'react';
+import CountUp from 'react-countup';
+import cx from 'classnames';
+// import styles from './Tab2.css';
+import { Card, CardContent, Typography, Grid, CardActions } from '@material-ui/core';
+import {fetchDistrictDetails} from '../api/index';
+import CardComponent from "../components/CardComponent";
+import Chart from "../components/Chart";
+interface IProps {
+  state:string
+  district:string
+  data:Array<Object>
+}
+
+const Tab3: React.FC<IProps> = ({state, district, data }: IProps) => {
+  const [districtData, setDistrictData] = useState<string>('');
+  
+  useEffect(() =>{
+    const getDistrictDetails = async ()=>{
+      const data = await fetchDistrictDetails(state, district);
+      setDistrictData(data);
+    }
+    getDistrictDetails();
+  })
+
+  
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
-      </IonContent>
-    </IonPage>
+    <IonPage className="ov">
+
+<IonContent>
+      <h1>{district}</h1>
+      <div className="list2">
+      <Grid container spacing={3} justify="center">
+        <CardComponent
+          className="infected"
+          cardTitle="Infected"
+          value={districtData["confirmed"]}
+          cardSubtitle="Number of active cases from COVID-19."
+        />
+        <CardComponent
+          className="active"
+          cardTitle="Active"
+          value={districtData["active"]}
+          cardSubtitle="Number of recovered cases of COVID-19."
+        />
+        <CardComponent
+          className="recovered"
+          cardTitle="Recovered"
+          value={districtData["recovered"]}
+          cardSubtitle="Number of recoveries from COVID-19."
+        />
+      </Grid>
+        
+    
+    
+    <Chart confirmed={100} active={100} recovered={100} />
+    </div>
+    </IonContent>
+  </IonPage>
   );
 };
 
