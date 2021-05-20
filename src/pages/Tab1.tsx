@@ -12,7 +12,7 @@ interface IProps {
 const Tab1: React.FC<IProps> = ({ data, handleStateChange }: IProps) => {
 
   return (
-    <IonPage class="page">
+    <IonPage>
     <IonContent className="list-container">
       <h1>Select State</h1>
       <IonList className="list" inset>

@@ -18,15 +18,16 @@ interface IProps {
 }
 
 const Tab3: React.FC<IProps> = ({state, district, data }: IProps) => {
-  const [districtData, setDistrictData] = useState<string>('');
+  const [districtData, setDistrictData] = useState<Array<String>>([]);
   
   useEffect(() =>{
     const getDistrictDetails = async ()=>{
       const data = await fetchDistrictDetails(state, district);
+      console.log("Districtdata",data)
       setDistrictData(data);
     }
     getDistrictDetails();
-  })
+  },[])
 
   
   return (
@@ -58,7 +59,7 @@ const Tab3: React.FC<IProps> = ({state, district, data }: IProps) => {
         
     
     
-    <Chart confirmed={100} active={100} recovered={100} />
+    <Chart confirmed={districtData["confirmed"]} active={districtData["active"]} recovered={districtData["recovered"]} />
     </div>
     </IonContent>
   </IonPage>

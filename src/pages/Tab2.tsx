@@ -1,4 +1,4 @@
-import { IonContent,IonCard,IonCardContent,IonCardSubtitle,IonCardHeader,IonCardTitle,IonItemOptions,IonItemSliding,IonItemOption,IonItem,IonList,IonLabel,IonItemDivider,IonListHeader, IonSelectOption, IonSelect , IonHeader, IonPage, IonToolbar } from '@ionic/react';
+import { IonContent,IonCard,IonCardContent,IonCardSubtitle,IonCardHeader,IonCardTitle,IonItemOptions,IonItemSliding,IonItemOption,IonItem,IonList,IonLabel,IonItemDivider,IonListHeader, IonSelectOption, IonSelect , IonHeader, IonPage, IonToolbar, useIonViewWillEnter } from '@ionic/react';
 
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
@@ -21,6 +21,7 @@ const Tab2: React.FC<IProps> = ({state, data, handleDistrictChange }: IProps) =>
   
   const [stateData, setStateData] = useState<Array<String>>([]);
   const [cases, setCases] = useState<any[]>([]);
+  console.log(data)
   useEffect(() =>{
     const getStateDetails = async (state)=>{
       const data = await fetchStateDetails(state);
@@ -44,7 +45,6 @@ const Tab2: React.FC<IProps> = ({state, data, handleDistrictChange }: IProps) =>
     <IonPage>
       <IonContent>
     <h1>{state}</h1>
-
       <div>
       <Grid container spacing={3} justify="center">
         <CardComponent
