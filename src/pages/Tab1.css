@@ -5,9 +5,9 @@ ion-content{
   --offset-bottom: auto!important;
   --overflow: hidden;
   overflow: auto;
-  &::-webkit-scrollbar {
+  /* &::-webkit-scrollbar {
     display: none;
-  }
+  } */
 }
 h1{
   font-size:50px !important;

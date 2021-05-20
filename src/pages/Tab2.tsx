@@ -40,7 +40,12 @@ const Tab2: React.FC<IProps> = ({state, data, handleDistrictChange }: IProps) =>
     getStateDetails(state);
   },[])
 
-  
+  const values:any = [];
+
+  for(let i=0;i<cases.length;i++){
+    values[i] = cases[i].toLocaleString();
+  }
+
   return (
     <IonPage>
       <IonContent>
@@ -50,19 +55,19 @@ const Tab2: React.FC<IProps> = ({state, data, handleDistrictChange }: IProps) =>
         <CardComponent
           className="infected"
           cardTitle="Infected"
-          value={cases[0]}
+          value={values[0]}
           cardSubtitle="Total number of cases of COVID-19."
         />
         <CardComponent
           className="active"
           cardTitle="Active"
-          value={cases[1]}
+          value={values[1]}
           cardSubtitle="Number of active cases of COVID-19."
         />
         <CardComponent
           className="recovered"
           cardTitle="Recovered"
-          value={cases[2]}
+          value={values[2]}
           cardSubtitle="Number of recoveries from COVID-19."
         />
       </Grid>

@@ -24,12 +24,17 @@ const Tab3: React.FC<IProps> = ({state, district, data }: IProps) => {
     const getDistrictDetails = async ()=>{
       const data = await fetchDistrictDetails(state, district);
       console.log("Districtdata",data)
+
       setDistrictData(data);
     }
     getDistrictDetails();
   },[])
 
-  
+  const values: any = {};
+  Object.keys(districtData).map(function(key, index){
+        values[key] = districtData[key].toLocaleString();
+      })
+
   return (
     <IonPage className="ov">
 
@@ -40,19 +45,19 @@ const Tab3: React.FC<IProps> = ({state, district, data }: IProps) => {
         <CardComponent
           className="infected"
           cardTitle="Infected"
-          value={districtData["confirmed"]}
+          value={values["confirmed"]}
           cardSubtitle="Total number of cases of COVID-19."
         />
         <CardComponent
           className="active"
           cardTitle="Active"
-          value={districtData["active"]}
+          value={values["active"]}
           cardSubtitle="Number of active cases of COVID-19."
         />
         <CardComponent
           className="recovered"
           cardTitle="Recovered"
-          value={districtData["recovered"]}
+          value={values["recovered"]}
           cardSubtitle="Number of recoveries from COVID-19."
         />
       </Grid>
