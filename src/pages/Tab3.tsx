@@ -40,13 +40,13 @@ const Tab3: React.FC<IProps> = ({state, district, data }: IProps) => {
           className="infected"
           cardTitle="Infected"
           value={districtData["confirmed"]}
-          cardSubtitle="Number of active cases from COVID-19."
+          cardSubtitle="Total number of active cases of COVID-19."
         />
         <CardComponent
           className="active"
           cardTitle="Active"
           value={districtData["active"]}
-          cardSubtitle="Number of recovered cases of COVID-19."
+          cardSubtitle="Number of active cases of COVID-19."
         />
         <CardComponent
           className="recovered"
