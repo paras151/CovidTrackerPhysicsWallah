@@ -2,7 +2,7 @@
 
 Covid Tracker Applicaton built using **Ionic + React** with a responsive UI, compatible for both Web and Mobile.
 
-Link to the deployed app: https://60a69f4e976e3b00077e685e--nostalgic-dijkstra-aaf0bf.netlify.app/
+Link to the deployed app: https://nostalgic-dijkstra-aaf0bf.netlify.app/
 
 The app uses **Material UI** for styling and **Chart.js** for showing data through graphs.
 
