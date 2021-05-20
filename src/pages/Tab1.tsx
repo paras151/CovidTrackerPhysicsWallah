@@ -14,7 +14,7 @@ const Tab1: React.FC<IProps> = ({ data, handleStateChange }: IProps) => {
   return (
     <IonPage class="page">
     <IonContent className="list-container">
-      <h1>Select State!</h1>
+      <h1>Select State</h1>
       <IonList className="list" inset>
         
           {data.map((state,i) => (

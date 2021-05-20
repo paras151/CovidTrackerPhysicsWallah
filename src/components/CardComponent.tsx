@@ -24,7 +24,8 @@ const CardComponent: React.FC<IProps> = ({className,cardTitle,value,cardSubtitle
         {cardTitle}
       </Typography>
       <Typography variant="h5" component="h2">
-      {value}
+      {/* {value} */}
+      <CountUp start={0} end={value} duration={2.75} separator="," />
       </Typography>
       <Typography color="textSecondary">
         {new Date().toDateString()}

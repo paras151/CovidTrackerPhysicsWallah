@@ -42,12 +42,9 @@ const Tab2: React.FC<IProps> = ({state, data, handleDistrictChange }: IProps) =>
   
   return (
     <IonPage>
-      
-      
-    
-
-    <IonContent>
+      <IonContent>
     <h1>{state}</h1>
+
       <div>
       <Grid container spacing={3} justify="center">
         <CardComponent
@@ -77,7 +74,7 @@ const Tab2: React.FC<IProps> = ({state, data, handleDistrictChange }: IProps) =>
       
     <h1>Select District</h1>
 
-      <IonList inset>
+      <IonList className="list-size" inset>
 
       {stateData.map((district,i) => (
                 <IonItemSliding key={i}>
